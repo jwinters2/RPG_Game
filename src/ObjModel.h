@@ -40,7 +40,7 @@ class ObjModel
 
     friend const bool GraphicsManager::loadObjModel(const ObjModel&);
     friend const bool GraphicsManager::unloadObjModel(const ObjModel&);
-    friend const bool GraphicsManager::renderObjModel(const ObjModel&);
+    friend const bool GraphicsManager::renderObjModel(const ObjModel&,const vec3&,const vec3&,const vec4&);
 
     void setPosition(const vec3&);
     void setScale(const vec3&);

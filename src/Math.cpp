@@ -27,12 +27,12 @@ vec2::vec2(float x_a,float y_a)
   y = y_a;
 }
 
-const float vec2::length()
+float vec2::length() const
 {
   return (float)(sqrt( x*x + y*y ));
 }
 
-const std::string vec2::toString()
+std::string vec2::toString() const
 {
   return ("[" + std::to_string(x) + "," + std::to_string(y) + "]");
 }
@@ -95,12 +95,12 @@ vec3::vec3(float x_a,float y_a,float z_a)
   z = z_a;
 }
 
-const float vec3::length()
+float vec3::length() const
 {
   return (float)(sqrt( x*x + y*y + z*z ));
 }
 
-const std::string vec3::toString()
+std::string vec3::toString() const
 {
   return ("[" + std::to_string(x) + "," + std::to_string(y) + "," + std::to_string(z) +"]");
 }
@@ -170,12 +170,12 @@ vec4::vec4(float x_a,float y_a,float z_a,float w_a)
   w = w_a;
 }
 
-const float vec4::length()
+float vec4::length() const
 {
   return (float)(sqrt( x*x + y*y + z*z + w*w ));
 }
 
-const std::string vec4::toString()
+std::string vec4::toString() const
 {
   return ("[" + std::to_string(x) + "," + std::to_string(y) + "," + 
                 std::to_string(z) + "," + std::to_string(w) + "]");
@@ -215,6 +215,45 @@ vec4 operator*(float s,const vec4& v)
   return v * s;
 }
 
+vec4 axisAngleToQuat(const vec4& v)
+{
+  vec4 retval;
+
+  vec3 axis(v.x,v.y,v.z);
+
+  // normalize the axis
+  float ax = v.x / axis.length();
+  float ay = v.y / axis.length();
+  float az = v.z / axis.length();
+
+  // get the angle in radians
+  float angle = v.w * Math::PI / 180.0f;
+
+  /*
+   * quaternion for angle a on axis [X,Y,Z] is:
+   *
+   * x = X sin(a/2)
+   * y = Y sin(a/2)
+   * z = Z sin(a/2)
+   * w =   cos(a/2)
+   */
+  retval.x = ax * sin(angle/2.0f);
+  retval.y = ay * sin(angle/2.0f);
+  retval.z = az * sin(angle/2.0f);
+  retval.w =      cos(angle/2.0f);
+
+  return retval;
+}
+
+vec4 identityQuat()
+{
+  return vec4(0.0f,0.0f,0.0f,1.0f);
+}
+
+vec4 multiplyQuat(const vec4&,const vec4&)
+{
+  return vec4();
+}
 
 
-const double Math::PI = 3.14159263538979;
+const float Math::PI = 3.14159263538979;

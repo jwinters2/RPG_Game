@@ -213,12 +213,12 @@ const bool GraphicsManager::unloadObjModel(const ObjModel& m)
   return false;
 }
 
-const bool GraphicsManager::renderObjModel(const ObjModel& m)
+const bool GraphicsManager::renderObjModel(const ObjModel& m,const vec3& pos,const vec3& scale,const vec4& rot)
 {
   if(m.isValid)
   {
-    Model = getTranslationMatrix(m.position) * getRotationMatrix(m.rotation) * 
-            getScaleMatrix(m.scale) * glm::mat4(1.0f);
+    Model = getTranslationMatrix(pos) * getRotationMatrix(rot) * 
+            getScaleMatrix(scale) * glm::mat4(1.0f);
     MVP = Projection * View * Model;
     glUniformMatrix4fv(MatrixID,1,GL_FALSE,&MVP[0][0]);
 
@@ -263,8 +263,57 @@ glm::mat4 GraphicsManager::getTranslationMatrix(const vec3& p)
 
 glm::mat4 GraphicsManager::getRotationMatrix(const vec4& r)
 {
-  vec3 axis(r.x,r.y,r.z);
-  return glm::rotate(glm::mat4(1.0f),r.w,toGlmVec3(axis));
+  /*
+   *  the matrix for quaternion Q = [w,x,y,z] is :
+   *
+   *  |   1-2y^2-2z^2   2xy+2wz       2xz-2wy       0   |
+   *
+   *  |   2xy-2wz       1-2x^2-2z^2   2yz+2wx       0   |
+   *
+   *  |   2xz+2wy       2yz-2wz       1-2x^2-2y^2   0   |
+   *
+   *  |   0             0             0             1   |
+   *
+   *
+   *  where w,x,y,z are normalized ( ||Q|| = 1 )
+   *
+   *  also glm::mat4 uses m[column][row]
+   */
+  //vec3 axis(r.x,r.y,r.z);
+  //return glm::rotate(glm::mat4(1.0f),r.w,toGlmVec3(axis));
+  const float n = 1.0f/r.length();
+  const float qw = r.w * n;
+  const float qx = r.x * n;
+  const float qy = r.y * n;
+  const float qz = r.z * n;
+
+  glm::mat4 retval;
+
+  // first row
+  retval[0][0] = 1.0f - 2*qy*qy - 2*qz*qz;
+  retval[1][0] =        2*qx*qy + 2*qw*qz;
+  retval[2][0] =        2*qx*qz - 2*qw*qy;
+  retval[3][0] = 0.0f;
+
+  // second row
+  retval[0][1] =        2*qx*qy - 2*qw*qz;
+  retval[1][1] = 1.0f - 2*qx*qx - 2*qz*qz;
+  retval[2][1] =        2*qy*qz + 2*qw*qx;
+  retval[3][1] = 0.0f;
+
+  // third row
+  retval[0][2] =        2*qx*qz + 2*qw*qy;
+  retval[1][2] =        2*qy*qz - 2*qw*qx;
+  retval[2][2] = 1.0f - 2*qx*qx - 2*qy*qy;
+  retval[3][2] = 0.0f;
+
+  // fourth row
+  retval[0][3] = 0.0f;
+  retval[1][3] = 0.0f;
+  retval[2][3] = 0.0f;
+  retval[3][3] = 1.0f;
+
+  return retval;
 }
 
 glm::mat4 GraphicsManager::getScaleMatrix(const vec3& s)

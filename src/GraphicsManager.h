@@ -24,7 +24,7 @@ class GraphicsManager
 
     const bool loadObjModel(const ObjModel&);
     const bool unloadObjModel(const ObjModel&);
-    const bool renderObjModel(const ObjModel&);
+    const bool renderObjModel(const ObjModel&,const vec3&,const vec3&,const vec4&);
 
     const bool closeButtonPressed();
 
