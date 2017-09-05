@@ -33,11 +33,15 @@ class GraphicsManager
     const int SCREEN_WIDTH;
     const int SCREEN_HEIGHT;
 
-    void moveCamera(const vec3&);
-    
+    void setCamera(Camera*);
+
     // THIS IS ONLY PUBLIC FOR TESTING
     // NEEDS TO BE PRIVATE
     /*--*/  GLuint LoadBMP(std::string);
+
+    void getMouseSpeed(double&,double&);
+    bool getKeyDown(int) const;
+    float getDeltaTime() const;
 
   private:
     GraphicsManager(int,int);
@@ -47,7 +51,12 @@ class GraphicsManager
 
     GLFWwindow* window;
 
-    Camera camera;
+    Camera* camera;
+    void getViewFromCamera();
+    
+    float deltaTime;
+    float currentTime;
+    float previousTime;
 
     // THIS SECTION IS FOR TESTING
     /*--*/  GLuint VertexArrayID;
@@ -58,8 +67,6 @@ class GraphicsManager
     std::map<std::string,GLuint> uv_buffers;
     std::map<std::string,GLuint> texture_buffers;
     std::map<std::string,ObjModel*> model_pointers;
-
-    /*--*/  static const GLfloat g_vertex_buffer_data[9];
 
     /*--*/  GLuint LoadShaders(const char *,const char*);
     /*--*/  //GLuint LoadBMP(const char *);

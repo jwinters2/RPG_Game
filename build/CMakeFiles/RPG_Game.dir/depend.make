@@ -12,7 +12,11 @@ CMakeFiles/RPG_Game.dir/main.cpp.o: ../src/Object.h
 
 CMakeFiles/RPG_Game.dir/src/Camera.cpp.o: ../src/Camera.cpp
 CMakeFiles/RPG_Game.dir/src/Camera.cpp.o: ../src/Camera.h
+CMakeFiles/RPG_Game.dir/src/Camera.cpp.o: ../src/Entity.h
+CMakeFiles/RPG_Game.dir/src/Camera.cpp.o: ../src/EntityManager.h
+CMakeFiles/RPG_Game.dir/src/Camera.cpp.o: ../src/GraphicsManager.h
 CMakeFiles/RPG_Game.dir/src/Camera.cpp.o: ../src/Math.h
+CMakeFiles/RPG_Game.dir/src/Camera.cpp.o: ../src/Object.h
 
 CMakeFiles/RPG_Game.dir/src/Entity.cpp.o: ../src/Camera.h
 CMakeFiles/RPG_Game.dir/src/Entity.cpp.o: ../src/Entity.cpp
@@ -20,6 +24,7 @@ CMakeFiles/RPG_Game.dir/src/Entity.cpp.o: ../src/Entity.h
 CMakeFiles/RPG_Game.dir/src/Entity.cpp.o: ../src/EntityManager.h
 CMakeFiles/RPG_Game.dir/src/Entity.cpp.o: ../src/GraphicsManager.h
 CMakeFiles/RPG_Game.dir/src/Entity.cpp.o: ../src/Math.h
+CMakeFiles/RPG_Game.dir/src/Entity.cpp.o: ../src/Object.h
 
 CMakeFiles/RPG_Game.dir/src/EntityManager.cpp.o: ../src/Camera.h
 CMakeFiles/RPG_Game.dir/src/EntityManager.cpp.o: ../src/Entity.h
@@ -27,21 +32,26 @@ CMakeFiles/RPG_Game.dir/src/EntityManager.cpp.o: ../src/EntityManager.cpp
 CMakeFiles/RPG_Game.dir/src/EntityManager.cpp.o: ../src/EntityManager.h
 CMakeFiles/RPG_Game.dir/src/EntityManager.cpp.o: ../src/GraphicsManager.h
 CMakeFiles/RPG_Game.dir/src/EntityManager.cpp.o: ../src/Math.h
+CMakeFiles/RPG_Game.dir/src/EntityManager.cpp.o: ../src/Object.h
 
 CMakeFiles/RPG_Game.dir/src/GraphicsManager.cpp.o: ../src/Camera.h
+CMakeFiles/RPG_Game.dir/src/GraphicsManager.cpp.o: ../src/Entity.h
 CMakeFiles/RPG_Game.dir/src/GraphicsManager.cpp.o: ../src/GraphicsManager.cpp
 CMakeFiles/RPG_Game.dir/src/GraphicsManager.cpp.o: ../src/GraphicsManager.h
 CMakeFiles/RPG_Game.dir/src/GraphicsManager.cpp.o: ../src/Math.h
 CMakeFiles/RPG_Game.dir/src/GraphicsManager.cpp.o: ../src/ObjModel.h
+CMakeFiles/RPG_Game.dir/src/GraphicsManager.cpp.o: ../src/Object.h
 
 CMakeFiles/RPG_Game.dir/src/Math.cpp.o: ../src/Math.cpp
 CMakeFiles/RPG_Game.dir/src/Math.cpp.o: ../src/Math.h
 
 CMakeFiles/RPG_Game.dir/src/ObjModel.cpp.o: ../src/Camera.h
+CMakeFiles/RPG_Game.dir/src/ObjModel.cpp.o: ../src/Entity.h
 CMakeFiles/RPG_Game.dir/src/ObjModel.cpp.o: ../src/GraphicsManager.h
 CMakeFiles/RPG_Game.dir/src/ObjModel.cpp.o: ../src/Math.h
 CMakeFiles/RPG_Game.dir/src/ObjModel.cpp.o: ../src/ObjModel.cpp
 CMakeFiles/RPG_Game.dir/src/ObjModel.cpp.o: ../src/ObjModel.h
+CMakeFiles/RPG_Game.dir/src/ObjModel.cpp.o: ../src/Object.h
 
 CMakeFiles/RPG_Game.dir/src/Object.cpp.o: ../src/Camera.h
 CMakeFiles/RPG_Game.dir/src/Object.cpp.o: ../src/Entity.h

@@ -9,16 +9,8 @@
 
 GraphicsManager* GraphicsManager::instance = NULL;
 
-const GLfloat GraphicsManager::g_vertex_buffer_data[] = 
+GraphicsManager::GraphicsManager(int w,int h):SCREEN_WIDTH(w),SCREEN_HEIGHT(h),camera(NULL)
 {
-  -1.0f, -1.0f, 1.0f,
-   1.0f, -1.0f, 0.0f,
-   0.0f,  1.0f, 0.0f
-};
-
-GraphicsManager::GraphicsManager(int w,int h):SCREEN_WIDTH(w),SCREEN_HEIGHT(h)
-{
-  camera.setPosition(vec3(0.0f,0.0f,6.0f));
 }
 
 GraphicsManager::~GraphicsManager()
@@ -37,6 +29,11 @@ GraphicsManager* GraphicsManager::getInstance(int w,int h)
   }
 
   return GraphicsManager::instance;
+}
+
+void GraphicsManager::setCamera(Camera* c)
+{
+  camera = c;
 }
 
 /*
@@ -83,6 +80,9 @@ bool GraphicsManager::init()
   }
 
   glfwSetInputMode(window,GLFW_STICKY_KEYS,GL_TRUE);
+  glfwSetInputMode(window,GLFW_CURSOR,GLFW_CURSOR_HIDDEN);
+
+  currentTime = (float)glfwGetTime();
 
   glEnable(GL_DEPTH_TEST);
   glDepthFunc(GL_LESS);
@@ -107,11 +107,12 @@ bool GraphicsManager::init()
   /*--*/                                0.1f,
   /*--*/                                100.0f);
 
-  /*--*/  View = glm::lookAt(
-  /*--*/                     toGlmVec3(camera.getPosition()),
-  /*--*/                     toGlmVec3(camera.getTarget()),
-  /*--*/                     toGlmVec3(camera.getUp()));
+  ///*--*/  View = glm::lookAt(
+  ///*--*/                     toGlmVec3(camera.getPosition()),
+  ///*--*/                     toGlmVec3(camera.getTarget()),
+  ///*--*/                     toGlmVec3(camera.getUp()));
 
+          getViewFromCamera();
   /*--*/  Model = glm::mat4(1.0f);
 
   /*--*/  MVP = Projection * View * Model;
@@ -143,14 +144,17 @@ bool GraphicsManager::startFrame()
 {
   // THIS SECTION IS JUST FOR TESTING
   /*--*/  //camera.move(vec3(0.0f,0.0f,0.05f));
-  /*--*/  View = glm::lookAt(
-  /*--*/                     toGlmVec3(camera.getPosition()),
-  /*--*/                     toGlmVec3(camera.getTarget()),
-  /*--*/                     toGlmVec3(camera.getUp()));
+  ///*--*/  View = glm::lookAt(
+  ///*--*/                     toGlmVec3(camera.getPosition()),
+  ///*--*/                     toGlmVec3(camera.getTarget()),
+  ///*--*/                     toGlmVec3(camera.getUp()));
+          getViewFromCamera();
   /*--*/  MVP = Projection * View * Model;
 
   /*--*/  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   /*--*/  glUseProgram(programID);
+
+  glfwSetCursorPos(window,(double)SCREEN_WIDTH/2,(double)SCREEN_HEIGHT/2);
 
 
 
@@ -168,9 +172,29 @@ bool GraphicsManager::endFrame()
   /*--*/  glDisableVertexAttribArray(1);
   glfwSwapBuffers(window);
   glfwPollEvents();
+
+  previousTime = currentTime;
+  currentTime = (float)glfwGetTime();
+  deltaTime = currentTime-previousTime;
+
 }
 
 
+void GraphicsManager::getViewFromCamera()
+{
+  if(camera==NULL)
+  {
+    return;
+  }
+
+  vec3 forward(0.0f,0.0f,-1.0f);
+  vec3 up(0.0f,1.0f,0.0f);
+
+  View = glm::lookAt(
+                     toGlmVec3(camera->getPosition()),
+                     toGlmVec3(camera->getPosition() + applyQuatToVec3(camera->getRotation(),forward)),
+                     toGlmVec3(up));
+}
 
 
 
@@ -350,15 +374,28 @@ glm::mat4 GraphicsManager::getScaleMatrix(const vec3& s)
 
 
 
-void GraphicsManager::moveCamera(const vec3& dp)
-{
-  camera.setPosition(camera.getPosition() + dp);
-}
 
 
 bool GraphicsManager::closeButtonPressed() const
 {
-  return glfwWindowShouldClose(window);
+  return glfwWindowShouldClose(window) || getKeyDown(256); // 256 = esc
+}
+
+void GraphicsManager::getMouseSpeed(double& dx,double& dy)
+{
+  glfwGetCursorPos(window,&dx,&dy);
+  dx -= (double)SCREEN_WIDTH/2;
+  dy -= (double)SCREEN_HEIGHT/2;
+}
+
+bool GraphicsManager::getKeyDown(int key) const
+{
+  return glfwGetKey(window,key) == GLFW_PRESS;
+}
+
+float GraphicsManager::getDeltaTime() const
+{
+  return deltaTime;
 }
 
 GLuint GraphicsManager::LoadShaders(const char * vertex_file,const char* fragment_file)

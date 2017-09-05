@@ -60,6 +60,8 @@ vec4 axisAngleToQuat(const vec4&);
 vec4 identityQuat();
 vec4 multiplyQuat(const vec4&,const vec4&);
 
+vec3 applyQuatToVec3(const vec4&,const vec3&);
+
 class Math
 {
   public:

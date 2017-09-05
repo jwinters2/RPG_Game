@@ -4,6 +4,7 @@
 #include "src/EntityManager.h"
 #include "src/Entity.h"
 #include "src/Object.h"
+#include "src/Camera.h"
 
 int main(int argc, char** argv)
 {
@@ -41,8 +42,6 @@ int main(int argc, char** argv)
       return -1;
     }
 
-    gm->moveCamera(vec3(0.0f,0.0f,10.0f));
-
     EntityManager* em = EntityManager::getInstance();
     em->setGraphicsManager(gm);
 
@@ -52,6 +51,10 @@ int main(int argc, char** argv)
     o->setPosition(vec3(-5.0f,0.0f,0.0f));
 
     o->setRotation(axisAngleToQuat(vec4(0.0f,0.0f,1.0f,45.0f)));
+
+    Camera* c = Camera::insertInstance();
+    c->setPosition(vec3(0.0f,0.0f,15.0f));
+    gm->setCamera(c);
     //gm->loadObjModel(person);
     //gm->loadObjModel(person2);
     //gm->loadObjModel(art);
@@ -75,9 +78,7 @@ int main(int argc, char** argv)
         angle = 0.0f;
       }
 
-      o->rotate(axisAngleToQuat(vec4(0.0f,1.0f,0.0f,1.0f)));
-
-      gm->moveCamera(vec3(0.0f,0.0f,0.01f));
+      o->addRotation(axisAngleToQuat(vec4(0.0f,1.0f,0.0f,1.0f)));
     }
     
     gm->deinit();     // undo gm->init()

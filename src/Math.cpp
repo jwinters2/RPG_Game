@@ -293,7 +293,7 @@ vec4 invertQuat(const vec4& v)
   return retval;
 }
 
-vec4 multiplyQuat(const vec4& b,const vec4& a)
+vec4 multiplyQuat(const vec4& a,const vec4& b)
 {
   vec4 retval;
 
@@ -302,13 +302,32 @@ vec4 multiplyQuat(const vec4& b,const vec4& a)
   retval.y = a.w*b.y - a.x*b.z + a.y*b.w + a.z*b.x;
   retval.z = a.w*b.z + a.x*b.y - a.y*b.x + a.z*b.w;
 
-  retval.normalize();
+  //retval.normalize();
 
   //std::cout << "     a: " << a.length() << " " << a.toString() << std::endl;;
   //std::cout << "     b: " << b.length() << " " << b.toString() << std::endl;;
   //std::cout << "retval: " << retval.length() << " " << retval.toString() << std::endl;;
 
   return retval;
+}
+
+vec3 applyQuatToVec3(const vec4& q,const vec3& v)
+{
+  /*
+   * applying quaternion rotation q on a single point v
+   *
+   * v' = q * v * q', where * is hamiltonian multiplication (multiplyQuat)
+   *                  and q' is the inverse of q
+   */
+  vec4 temp;
+  temp.x = v.x;
+  temp.y = v.y;
+  temp.z = v.z;
+
+  temp = multiplyQuat(q,temp);
+  temp = multiplyQuat(temp,invertQuat(q));
+
+  return vec3(temp.x,temp.y,temp.z);
 }
 
 

@@ -19,12 +19,20 @@ src/Entity.h
 /home/jamie/Programming/RPG-game/src/Entity.h
 src/Object.h
 /home/jamie/Programming/RPG-game/src/Object.h
+src/Camera.h
+/home/jamie/Programming/RPG-game/src/Camera.h
 
 /home/jamie/Programming/RPG-game/src/Camera.cpp
 Camera.h
 /home/jamie/Programming/RPG-game/src/Camera.h
+EntityManager.h
+/home/jamie/Programming/RPG-game/src/EntityManager.h
+GraphicsManager.h
+/home/jamie/Programming/RPG-game/src/GraphicsManager.h
 
 /home/jamie/Programming/RPG-game/src/Camera.h
+Object.h
+/home/jamie/Programming/RPG-game/src/Object.h
 Math.h
 /home/jamie/Programming/RPG-game/src/Math.h
 
