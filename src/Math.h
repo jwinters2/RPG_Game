@@ -9,6 +9,7 @@ struct vec2
   vec2(float);
   vec2(float,float);
   float length() const;
+  void normalize();
   std::string toString() const;
 
   float x,y;
@@ -21,6 +22,7 @@ struct vec3
   vec3(float);
   vec3(float,float,float);
   float length() const;
+  void normalize();
   std::string toString() const;
 
   float x,y,z;
@@ -33,6 +35,7 @@ struct vec4
   vec4(float);
   vec4(float,float,float,float);
   float length() const;
+  void normalize();
   std::string toString() const;
 
   float x,y,z,w;

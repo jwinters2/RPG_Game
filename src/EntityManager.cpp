@@ -57,7 +57,6 @@ bool EntityManager::RenderIterate()
 {
   for(std::map<unsigned int,Entity*>::iterator it=entityList.begin(); it!=entityList.end(); ++it)
   {
-    std::cout << it->first << " " << it->second << std::endl;
     it->second->render();
   }
 }

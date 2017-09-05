@@ -52,11 +52,20 @@ bool Object::logic(int step)
 
 bool Object::render()
 {
-  std::cout << "Object render (id = " << getId() << ")" << std::endl;
   GraphicsManager::getInstance()->renderObjModel(model_name,texture_name,position,vec3(1.0f),rotation);
 }
 
 void Object::setPosition(const vec3& p)
 {
   position = p;
+}
+
+void Object::setRotation(const vec4& q)
+{
+  rotation = q;
+}
+
+void Object::rotate(const vec4& q)
+{
+  rotation = multiplyQuat(q,rotation);
 }

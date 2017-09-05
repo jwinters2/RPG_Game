@@ -25,4 +25,7 @@ class Object : public Entity
     virtual bool render();
 
     void setPosition(const vec3&);
+
+    void setRotation(const vec4&);
+    void rotate(const vec4&);
 };

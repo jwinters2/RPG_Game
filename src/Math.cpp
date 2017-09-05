@@ -2,6 +2,7 @@
 
 #include <cmath>
 #include <string>
+#include <iostream>
 
 vec2::vec2()
 {
@@ -30,6 +31,16 @@ vec2::vec2(float x_a,float y_a)
 float vec2::length() const
 {
   return (float)(sqrt( x*x + y*y ));
+}
+
+void vec2::normalize()
+{
+  if(length() != 0.0f)
+  {
+    float l = length();
+    x /= l;
+    y /= l;
+  }
 }
 
 std::string vec2::toString() const
@@ -98,6 +109,17 @@ vec3::vec3(float x_a,float y_a,float z_a)
 float vec3::length() const
 {
   return (float)(sqrt( x*x + y*y + z*z ));
+}
+
+void vec3::normalize()
+{
+  if(length() != 0.0f)
+  {
+    float l = length();
+    x /= l;
+    y /= l;
+    z /= l;
+  }
 }
 
 std::string vec3::toString() const
@@ -175,6 +197,18 @@ float vec4::length() const
   return (float)(sqrt( x*x + y*y + z*z + w*w ));
 }
 
+void vec4::normalize()
+{
+  if(length() != 0.0f)
+  {
+    float l = length();
+    x /= l;
+    y /= l;
+    z /= l;
+    w /= l;
+  }
+}
+
 std::string vec4::toString() const
 {
   return ("[" + std::to_string(x) + "," + std::to_string(y) + "," + 
@@ -227,7 +261,7 @@ vec4 axisAngleToQuat(const vec4& v)
   float az = v.z / axis.length();
 
   // get the angle in radians
-  float angle = v.w * Math::PI / 180.0f;
+  float angle = -1.0 * v.w * Math::PI / 180.0f;
 
   /*
    * quaternion for angle a on axis [X,Y,Z] is:
@@ -250,9 +284,31 @@ vec4 identityQuat()
   return vec4(0.0f,0.0f,0.0f,1.0f);
 }
 
-vec4 multiplyQuat(const vec4&,const vec4&)
+vec4 invertQuat(const vec4& v)
 {
-  return vec4();
+  vec4 retval(v); 
+  retval.x *= -1.0f;
+  retval.y *= -1.0f;
+  retval.z *= -1.0f;
+  return retval;
+}
+
+vec4 multiplyQuat(const vec4& b,const vec4& a)
+{
+  vec4 retval;
+
+  retval.w = a.w*b.w - a.x*b.x - a.y*b.y - a.z*b.z;
+  retval.x = a.w*b.x + a.x*b.w + a.y*b.z - a.z*b.y;
+  retval.y = a.w*b.y - a.x*b.z + a.y*b.w + a.z*b.x;
+  retval.z = a.w*b.z + a.x*b.y - a.y*b.x + a.z*b.w;
+
+  retval.normalize();
+
+  //std::cout << "     a: " << a.length() << " " << a.toString() << std::endl;;
+  //std::cout << "     b: " << b.length() << " " << b.toString() << std::endl;;
+  //std::cout << "retval: " << retval.length() << " " << retval.toString() << std::endl;;
+
+  return retval;
 }
 
 
