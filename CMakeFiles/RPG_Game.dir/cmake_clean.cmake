@@ -4,6 +4,9 @@ file(REMOVE_RECURSE
   "CMakeFiles/RPG_Game.dir/src/Camera.cpp.o"
   "CMakeFiles/RPG_Game.dir/src/Math.cpp.o"
   "CMakeFiles/RPG_Game.dir/src/ObjModel.cpp.o"
+  "CMakeFiles/RPG_Game.dir/src/EntityManager.cpp.o"
+  "CMakeFiles/RPG_Game.dir/src/Entity.cpp.o"
+  "CMakeFiles/RPG_Game.dir/src/Object.cpp.o"
   "bin/RPG_Game.pdb"
   "bin/RPG_Game"
 )

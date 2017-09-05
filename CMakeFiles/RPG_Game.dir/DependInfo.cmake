@@ -6,9 +6,12 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/jamie/Programming/RPG-game/main.cpp" "/home/jamie/Programming/RPG-game/CMakeFiles/RPG_Game.dir/main.cpp.o"
   "/home/jamie/Programming/RPG-game/src/Camera.cpp" "/home/jamie/Programming/RPG-game/CMakeFiles/RPG_Game.dir/src/Camera.cpp.o"
+  "/home/jamie/Programming/RPG-game/src/Entity.cpp" "/home/jamie/Programming/RPG-game/CMakeFiles/RPG_Game.dir/src/Entity.cpp.o"
+  "/home/jamie/Programming/RPG-game/src/EntityManager.cpp" "/home/jamie/Programming/RPG-game/CMakeFiles/RPG_Game.dir/src/EntityManager.cpp.o"
   "/home/jamie/Programming/RPG-game/src/GraphicsManager.cpp" "/home/jamie/Programming/RPG-game/CMakeFiles/RPG_Game.dir/src/GraphicsManager.cpp.o"
   "/home/jamie/Programming/RPG-game/src/Math.cpp" "/home/jamie/Programming/RPG-game/CMakeFiles/RPG_Game.dir/src/Math.cpp.o"
   "/home/jamie/Programming/RPG-game/src/ObjModel.cpp" "/home/jamie/Programming/RPG-game/CMakeFiles/RPG_Game.dir/src/ObjModel.cpp.o"
+  "/home/jamie/Programming/RPG-game/src/Object.cpp" "/home/jamie/Programming/RPG-game/CMakeFiles/RPG_Game.dir/src/Object.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

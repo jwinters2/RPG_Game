@@ -177,13 +177,88 @@ CMakeFiles/RPG_Game.dir/src/ObjModel.cpp.o.provides: CMakeFiles/RPG_Game.dir/src
 CMakeFiles/RPG_Game.dir/src/ObjModel.cpp.o.provides.build: CMakeFiles/RPG_Game.dir/src/ObjModel.cpp.o
 
 
+CMakeFiles/RPG_Game.dir/src/EntityManager.cpp.o: CMakeFiles/RPG_Game.dir/flags.make
+CMakeFiles/RPG_Game.dir/src/EntityManager.cpp.o: src/EntityManager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jamie/Programming/RPG-game/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/RPG_Game.dir/src/EntityManager.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/RPG_Game.dir/src/EntityManager.cpp.o -c /home/jamie/Programming/RPG-game/src/EntityManager.cpp
+
+CMakeFiles/RPG_Game.dir/src/EntityManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RPG_Game.dir/src/EntityManager.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jamie/Programming/RPG-game/src/EntityManager.cpp > CMakeFiles/RPG_Game.dir/src/EntityManager.cpp.i
+
+CMakeFiles/RPG_Game.dir/src/EntityManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RPG_Game.dir/src/EntityManager.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jamie/Programming/RPG-game/src/EntityManager.cpp -o CMakeFiles/RPG_Game.dir/src/EntityManager.cpp.s
+
+CMakeFiles/RPG_Game.dir/src/EntityManager.cpp.o.requires:
+
+.PHONY : CMakeFiles/RPG_Game.dir/src/EntityManager.cpp.o.requires
+
+CMakeFiles/RPG_Game.dir/src/EntityManager.cpp.o.provides: CMakeFiles/RPG_Game.dir/src/EntityManager.cpp.o.requires
+	$(MAKE) -f CMakeFiles/RPG_Game.dir/build.make CMakeFiles/RPG_Game.dir/src/EntityManager.cpp.o.provides.build
+.PHONY : CMakeFiles/RPG_Game.dir/src/EntityManager.cpp.o.provides
+
+CMakeFiles/RPG_Game.dir/src/EntityManager.cpp.o.provides.build: CMakeFiles/RPG_Game.dir/src/EntityManager.cpp.o
+
+
+CMakeFiles/RPG_Game.dir/src/Entity.cpp.o: CMakeFiles/RPG_Game.dir/flags.make
+CMakeFiles/RPG_Game.dir/src/Entity.cpp.o: src/Entity.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jamie/Programming/RPG-game/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/RPG_Game.dir/src/Entity.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/RPG_Game.dir/src/Entity.cpp.o -c /home/jamie/Programming/RPG-game/src/Entity.cpp
+
+CMakeFiles/RPG_Game.dir/src/Entity.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RPG_Game.dir/src/Entity.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jamie/Programming/RPG-game/src/Entity.cpp > CMakeFiles/RPG_Game.dir/src/Entity.cpp.i
+
+CMakeFiles/RPG_Game.dir/src/Entity.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RPG_Game.dir/src/Entity.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jamie/Programming/RPG-game/src/Entity.cpp -o CMakeFiles/RPG_Game.dir/src/Entity.cpp.s
+
+CMakeFiles/RPG_Game.dir/src/Entity.cpp.o.requires:
+
+.PHONY : CMakeFiles/RPG_Game.dir/src/Entity.cpp.o.requires
+
+CMakeFiles/RPG_Game.dir/src/Entity.cpp.o.provides: CMakeFiles/RPG_Game.dir/src/Entity.cpp.o.requires
+	$(MAKE) -f CMakeFiles/RPG_Game.dir/build.make CMakeFiles/RPG_Game.dir/src/Entity.cpp.o.provides.build
+.PHONY : CMakeFiles/RPG_Game.dir/src/Entity.cpp.o.provides
+
+CMakeFiles/RPG_Game.dir/src/Entity.cpp.o.provides.build: CMakeFiles/RPG_Game.dir/src/Entity.cpp.o
+
+
+CMakeFiles/RPG_Game.dir/src/Object.cpp.o: CMakeFiles/RPG_Game.dir/flags.make
+CMakeFiles/RPG_Game.dir/src/Object.cpp.o: src/Object.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jamie/Programming/RPG-game/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/RPG_Game.dir/src/Object.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/RPG_Game.dir/src/Object.cpp.o -c /home/jamie/Programming/RPG-game/src/Object.cpp
+
+CMakeFiles/RPG_Game.dir/src/Object.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RPG_Game.dir/src/Object.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jamie/Programming/RPG-game/src/Object.cpp > CMakeFiles/RPG_Game.dir/src/Object.cpp.i
+
+CMakeFiles/RPG_Game.dir/src/Object.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RPG_Game.dir/src/Object.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jamie/Programming/RPG-game/src/Object.cpp -o CMakeFiles/RPG_Game.dir/src/Object.cpp.s
+
+CMakeFiles/RPG_Game.dir/src/Object.cpp.o.requires:
+
+.PHONY : CMakeFiles/RPG_Game.dir/src/Object.cpp.o.requires
+
+CMakeFiles/RPG_Game.dir/src/Object.cpp.o.provides: CMakeFiles/RPG_Game.dir/src/Object.cpp.o.requires
+	$(MAKE) -f CMakeFiles/RPG_Game.dir/build.make CMakeFiles/RPG_Game.dir/src/Object.cpp.o.provides.build
+.PHONY : CMakeFiles/RPG_Game.dir/src/Object.cpp.o.provides
+
+CMakeFiles/RPG_Game.dir/src/Object.cpp.o.provides.build: CMakeFiles/RPG_Game.dir/src/Object.cpp.o
+
+
 # Object files for target RPG_Game
 RPG_Game_OBJECTS = \
 "CMakeFiles/RPG_Game.dir/main.cpp.o" \
 "CMakeFiles/RPG_Game.dir/src/GraphicsManager.cpp.o" \
 "CMakeFiles/RPG_Game.dir/src/Camera.cpp.o" \
 "CMakeFiles/RPG_Game.dir/src/Math.cpp.o" \
-"CMakeFiles/RPG_Game.dir/src/ObjModel.cpp.o"
+"CMakeFiles/RPG_Game.dir/src/ObjModel.cpp.o" \
+"CMakeFiles/RPG_Game.dir/src/EntityManager.cpp.o" \
+"CMakeFiles/RPG_Game.dir/src/Entity.cpp.o" \
+"CMakeFiles/RPG_Game.dir/src/Object.cpp.o"
 
 # External object files for target RPG_Game
 RPG_Game_EXTERNAL_OBJECTS =
@@ -193,9 +268,12 @@ bin/RPG_Game: CMakeFiles/RPG_Game.dir/src/GraphicsManager.cpp.o
 bin/RPG_Game: CMakeFiles/RPG_Game.dir/src/Camera.cpp.o
 bin/RPG_Game: CMakeFiles/RPG_Game.dir/src/Math.cpp.o
 bin/RPG_Game: CMakeFiles/RPG_Game.dir/src/ObjModel.cpp.o
+bin/RPG_Game: CMakeFiles/RPG_Game.dir/src/EntityManager.cpp.o
+bin/RPG_Game: CMakeFiles/RPG_Game.dir/src/Entity.cpp.o
+bin/RPG_Game: CMakeFiles/RPG_Game.dir/src/Object.cpp.o
 bin/RPG_Game: CMakeFiles/RPG_Game.dir/build.make
 bin/RPG_Game: CMakeFiles/RPG_Game.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jamie/Programming/RPG-game/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable bin/RPG_Game"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jamie/Programming/RPG-game/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable bin/RPG_Game"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/RPG_Game.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -208,6 +286,9 @@ CMakeFiles/RPG_Game.dir/requires: CMakeFiles/RPG_Game.dir/src/GraphicsManager.cp
 CMakeFiles/RPG_Game.dir/requires: CMakeFiles/RPG_Game.dir/src/Camera.cpp.o.requires
 CMakeFiles/RPG_Game.dir/requires: CMakeFiles/RPG_Game.dir/src/Math.cpp.o.requires
 CMakeFiles/RPG_Game.dir/requires: CMakeFiles/RPG_Game.dir/src/ObjModel.cpp.o.requires
+CMakeFiles/RPG_Game.dir/requires: CMakeFiles/RPG_Game.dir/src/EntityManager.cpp.o.requires
+CMakeFiles/RPG_Game.dir/requires: CMakeFiles/RPG_Game.dir/src/Entity.cpp.o.requires
+CMakeFiles/RPG_Game.dir/requires: CMakeFiles/RPG_Game.dir/src/Object.cpp.o.requires
 
 .PHONY : CMakeFiles/RPG_Game.dir/requires
 

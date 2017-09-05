@@ -8,6 +8,7 @@ set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 set(CMAKE_BUILD_DIRECTORY ${CMAKE_SOURCE_DIR}/build)
 
 set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_CXX_STANDARD 11)
 
 find_package(OpenGL)
 
@@ -23,6 +24,9 @@ set(
   src/Camera.h
   src/Math.h
   src/ObjModel.h
+  src/EntityManager.h
+  src/Entity.h
+  src/Object.h
 )
 
 set(
@@ -31,6 +35,9 @@ set(
   src/Camera.cpp
   src/Math.cpp
   src/ObjModel.cpp
+  src/EntityManager.cpp
+  src/Entity.cpp
+  src/Object.cpp
 )
 
 include_directories(

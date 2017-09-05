@@ -177,6 +177,60 @@ src/Camera.cpp.s:
 	$(MAKE) -f CMakeFiles/RPG_Game.dir/build.make CMakeFiles/RPG_Game.dir/src/Camera.cpp.s
 .PHONY : src/Camera.cpp.s
 
+src/Entity.o: src/Entity.cpp.o
+
+.PHONY : src/Entity.o
+
+# target to build an object file
+src/Entity.cpp.o:
+	$(MAKE) -f CMakeFiles/RPG_Game.dir/build.make CMakeFiles/RPG_Game.dir/src/Entity.cpp.o
+.PHONY : src/Entity.cpp.o
+
+src/Entity.i: src/Entity.cpp.i
+
+.PHONY : src/Entity.i
+
+# target to preprocess a source file
+src/Entity.cpp.i:
+	$(MAKE) -f CMakeFiles/RPG_Game.dir/build.make CMakeFiles/RPG_Game.dir/src/Entity.cpp.i
+.PHONY : src/Entity.cpp.i
+
+src/Entity.s: src/Entity.cpp.s
+
+.PHONY : src/Entity.s
+
+# target to generate assembly for a file
+src/Entity.cpp.s:
+	$(MAKE) -f CMakeFiles/RPG_Game.dir/build.make CMakeFiles/RPG_Game.dir/src/Entity.cpp.s
+.PHONY : src/Entity.cpp.s
+
+src/EntityManager.o: src/EntityManager.cpp.o
+
+.PHONY : src/EntityManager.o
+
+# target to build an object file
+src/EntityManager.cpp.o:
+	$(MAKE) -f CMakeFiles/RPG_Game.dir/build.make CMakeFiles/RPG_Game.dir/src/EntityManager.cpp.o
+.PHONY : src/EntityManager.cpp.o
+
+src/EntityManager.i: src/EntityManager.cpp.i
+
+.PHONY : src/EntityManager.i
+
+# target to preprocess a source file
+src/EntityManager.cpp.i:
+	$(MAKE) -f CMakeFiles/RPG_Game.dir/build.make CMakeFiles/RPG_Game.dir/src/EntityManager.cpp.i
+.PHONY : src/EntityManager.cpp.i
+
+src/EntityManager.s: src/EntityManager.cpp.s
+
+.PHONY : src/EntityManager.s
+
+# target to generate assembly for a file
+src/EntityManager.cpp.s:
+	$(MAKE) -f CMakeFiles/RPG_Game.dir/build.make CMakeFiles/RPG_Game.dir/src/EntityManager.cpp.s
+.PHONY : src/EntityManager.cpp.s
+
 src/GraphicsManager.o: src/GraphicsManager.cpp.o
 
 .PHONY : src/GraphicsManager.o
@@ -258,6 +312,33 @@ src/ObjModel.cpp.s:
 	$(MAKE) -f CMakeFiles/RPG_Game.dir/build.make CMakeFiles/RPG_Game.dir/src/ObjModel.cpp.s
 .PHONY : src/ObjModel.cpp.s
 
+src/Object.o: src/Object.cpp.o
+
+.PHONY : src/Object.o
+
+# target to build an object file
+src/Object.cpp.o:
+	$(MAKE) -f CMakeFiles/RPG_Game.dir/build.make CMakeFiles/RPG_Game.dir/src/Object.cpp.o
+.PHONY : src/Object.cpp.o
+
+src/Object.i: src/Object.cpp.i
+
+.PHONY : src/Object.i
+
+# target to preprocess a source file
+src/Object.cpp.i:
+	$(MAKE) -f CMakeFiles/RPG_Game.dir/build.make CMakeFiles/RPG_Game.dir/src/Object.cpp.i
+.PHONY : src/Object.cpp.i
+
+src/Object.s: src/Object.cpp.s
+
+.PHONY : src/Object.s
+
+# target to generate assembly for a file
+src/Object.cpp.s:
+	$(MAKE) -f CMakeFiles/RPG_Game.dir/build.make CMakeFiles/RPG_Game.dir/src/Object.cpp.s
+.PHONY : src/Object.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -273,6 +354,12 @@ help:
 	@echo "... src/Camera.o"
 	@echo "... src/Camera.i"
 	@echo "... src/Camera.s"
+	@echo "... src/Entity.o"
+	@echo "... src/Entity.i"
+	@echo "... src/Entity.s"
+	@echo "... src/EntityManager.o"
+	@echo "... src/EntityManager.i"
+	@echo "... src/EntityManager.s"
 	@echo "... src/GraphicsManager.o"
 	@echo "... src/GraphicsManager.i"
 	@echo "... src/GraphicsManager.s"
@@ -282,6 +369,9 @@ help:
 	@echo "... src/ObjModel.o"
 	@echo "... src/ObjModel.i"
 	@echo "... src/ObjModel.s"
+	@echo "... src/Object.o"
+	@echo "... src/Object.i"
+	@echo "... src/Object.s"
 .PHONY : help
 
 

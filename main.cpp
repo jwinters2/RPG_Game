@@ -1,16 +1,35 @@
 #include "src/GraphicsManager.h"
 #include "src/ObjModel.h"
 #include "src/Math.h"
+#include "src/EntityManager.h"
+#include "src/Entity.h"
+#include "src/Object.h"
 
 int main(int argc, char** argv)
 {
   GraphicsManager* gm = GraphicsManager::getInstance();   // get a reference to the singleton
-  ObjModel person("../res/sample_person.obj","../res/sample_person_tex.bmp");
-  ObjModel art("../res/art.obj","../res/art_tex.bmp");
-  person.setPosition(vec3(2.0f,0.0f,0.0f));
-  art.setScale(vec3(0.7f));
-  art.setPosition(vec3(-1.0f,-3.0f,-1.0f));
+  //ObjModel person("../res/sample_person.obj","../res/sample_person_tex.bmp");
+  //ObjModel person2("../res/sample_person.obj","../res/sample_person_tex.bmp");
+  //ObjModel art("../res/art.obj","../res/art_tex.bmp");
+  //person.setPosition(vec3(2.0f,0.0f,0.0f));
+  //art.setScale(vec3(0.7f));
+  //art.setPosition(vec3(-1.0f,-3.0f,-1.0f));
+
+  //vec3 person_pos(2.0f,0.0f,0.0f);
+  //vec3 person_scale(1.0f);
+  //vec4 person_rot = identityQuat();
+
+  //vec3 person2_pos(-2.0f,0.0f,0.0f);
+  //vec3 person2_scale(0.5f);
+  //vec4 person2_rot = identityQuat();
+
+
+  //vec3 art_pos(-1.0f,-3.0f,-1.0f);
+  //vec3 art_scale(0.7f);
+  //vec4 art_rot = identityQuat();
   //person.readFile("../res/cube.obj");
+
+
 
   //gm->LoadBMP("../res/sample_person_tex.bmp");
   float angle=0.0f;
@@ -21,28 +40,46 @@ int main(int argc, char** argv)
     {
       return -1;
     }
-    gm->loadObjModel(person);
-    gm->loadObjModel(art);
+
+    gm->moveCamera(vec3(0.0f,0.0f,10.0f));
+
+    EntityManager* em = EntityManager::getInstance();
+    em->setGraphicsManager(gm);
+
+    Object::insertInstance("../res/art.obj","../res/art_tex.bmp")->setPosition(vec3( 5.0f,0.0f,0.0f));
+    Object* o = Object::insertInstance("../res/art.obj","../res/art_tex.bmp");
+
+    o->setPosition(vec3(-5.0f,0.0f,0.0f));
+
+    o->setRotation(axisAngleToQuat(vec4(0.0f,0.0f,1.0f,45.0f)));
+    //gm->loadObjModel(person);
+    //gm->loadObjModel(person2);
+    //gm->loadObjModel(art);
    
     while(!gm->closeButtonPressed())
     {
+      em->LogicIterate();
+
       gm->startFrame();
-      gm->renderObjModel(person);
-      gm->renderObjModel(art);
+      em->RenderIterate();
+      //gm->renderObjModel(person,person_pos,person_scale,person_rot);
+      //gm->renderObjModel(person2,person2_pos,person2_scale,person2_rot);
+      //gm->renderObjModel(art,art_pos,art_scale,art_rot);
       gm->endFrame();
 
-      person.setRotation(vec4(0.0f,1.0f,0.0f,angle));
-      angle += 0.01f;
-      if(angle >= 360.0f)
+      //person_rot = axisAngleToQuat(vec4(1.0f,1.0f,1.0f,angle));
+      //art_rot = axisAngleToQuat(vec4(1.0f,20.0f,0.0f,angle/3.0f));
+      angle += 1.0f;
+      if(angle >= 1080.0f)
       {
         angle = 0.0f;
       }
 
+      o->rotate(axisAngleToQuat(vec4(0.0f,1.0f,0.0f,1.0f)));
+
       gm->moveCamera(vec3(0.0f,0.0f,0.01f));
     }
     
-    gm->unloadObjModel(person);
-    gm->unloadObjModel(art);
     gm->deinit();     // undo gm->init()
   }
 
