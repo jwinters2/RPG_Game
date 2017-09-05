@@ -34,13 +34,15 @@ class ObjModel
   public:
     ObjModel(std::string,std::string);
     ~ObjModel();
-    const void print();
-    const bool getIsValid();
-    const std::string getModelName();
+    void print() const;
+    bool getIsValid() const;
+    std::string getModelName() const;
+    int getSize() const;
 
-    friend const bool GraphicsManager::loadObjModel(const ObjModel&);
-    friend const bool GraphicsManager::unloadObjModel(const ObjModel&);
-    friend const bool GraphicsManager::renderObjModel(const ObjModel&,const vec3&,const vec3&,const vec4&);
+    friend bool GraphicsManager::loadObjModel(ObjModel*);
+    friend bool GraphicsManager::unloadObjModel(const ObjModel&);
+    friend bool GraphicsManager::renderObjModel(std::string,std::string,
+                                                      const vec3&,const vec3&,const vec4&);
 
     void setPosition(const vec3&);
     void setScale(const vec3&);

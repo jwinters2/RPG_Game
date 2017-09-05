@@ -174,26 +174,41 @@ bool GraphicsManager::endFrame()
 
 
 
-const bool GraphicsManager::loadObjModel(const ObjModel& m)
+bool GraphicsManager::loadObjModel(ObjModel* m)
 {
-  if(m.isValid)
+  if(m != NULL && m->isValid)
   {
-    GLuint vbuffer;
-    glGenBuffers(1,&vbuffer);
-    glBufferData(GL_ARRAY_BUFFER,m.vertices.size() * sizeof(vec3), &m.vertices[0], GL_STATIC_DRAW);
+    // check if the model is already loaded (exists in vertex_buffers)
+    if(vertex_buffers.find(m->modelName) == vertex_buffers.end())
+    {
+      // not found, load it
+      GLuint vbuffer;
+      glGenBuffers(1,&vbuffer);
+      glBufferData(GL_ARRAY_BUFFER,m->vertices.size() * sizeof(vec3), &m->vertices[0], GL_STATIC_DRAW);
 
-    GLuint uvbuffer;
-    glGenBuffers(1,&uvbuffer);
-    glBufferData(GL_ARRAY_BUFFER,m.uvs.size() * sizeof(vec2), &m.uvs[0], GL_STATIC_DRAW);
-    
-    vertex_buffers[m.modelName] = vbuffer;
-    uv_buffers[m.modelName] = uvbuffer;
+      GLuint uvbuffer;
+      glGenBuffers(1,&uvbuffer);
+      glBufferData(GL_ARRAY_BUFFER,m->uvs.size() * sizeof(vec2), &m->uvs[0], GL_STATIC_DRAW);
+      
+      // add to vertex_buffers
+      vertex_buffers[m->modelName] = vbuffer;
+      uv_buffers[m->modelName] = uvbuffer;
+      model_pointers[m->modelName] = m;
+    }
+    else
+    {
+      std::cout << "Model \"" << m->modelName << "\" has already been loaded" << std::endl;
+    }
 
-    GLuint texbuffer = LoadBMP(m.textureName);
-    texture_buffers[m.textureName] = texbuffer;
-
-    //std::cout << m.modelName << std::endl;
-    //std::cout << "v:" << vbuffer << " u:" << uvbuffer << " t:" << texbuffer << std::endl;
+    if(texture_buffers.find(m->textureName) == texture_buffers.end())
+    {
+      GLuint texbuffer = LoadBMP(m->textureName);
+      texture_buffers[m->textureName] = texbuffer;
+    }
+    else
+    {
+      std::cout << "Texture \"" << m->textureName << "\" has already been loaded" << std::endl;
+    }
 
     return true;
   }
@@ -201,7 +216,7 @@ const bool GraphicsManager::loadObjModel(const ObjModel& m)
   return false;
 }
 
-const bool GraphicsManager::unloadObjModel(const ObjModel& m)
+bool GraphicsManager::unloadObjModel(const ObjModel& m)
 {
   if(m.isValid)
   {
@@ -213,9 +228,12 @@ const bool GraphicsManager::unloadObjModel(const ObjModel& m)
   return false;
 }
 
-const bool GraphicsManager::renderObjModel(const ObjModel& m,const vec3& pos,const vec3& scale,const vec4& rot)
+bool GraphicsManager::renderObjModel(std::string mn,std::string tn,
+                                     const vec3& pos,const vec3& scale,const vec4& rot)
 {
-  if(m.isValid)
+  ObjModel* m = model_pointers[mn];
+
+  if(m != NULL && m->isValid)
   {
     Model = getTranslationMatrix(pos) * getRotationMatrix(rot) * 
             getScaleMatrix(scale) * glm::mat4(1.0f);
@@ -223,9 +241,9 @@ const bool GraphicsManager::renderObjModel(const ObjModel& m,const vec3& pos,con
     glUniformMatrix4fv(MatrixID,1,GL_FALSE,&MVP[0][0]);
 
 
-    GLuint vbuffer = vertex_buffers[m.modelName];
-    GLuint uvbuffer = uv_buffers[m.modelName];
-    GLuint texbuffer = texture_buffers[m.textureName];
+    GLuint vbuffer = vertex_buffers[mn];
+    GLuint uvbuffer = uv_buffers[mn];
+    GLuint texbuffer = texture_buffers[tn];
 
     //std::cout << "v:" << vbuffer << " u:" << uvbuffer << " t:" << texbuffer << std::endl;
 
@@ -236,15 +254,15 @@ const bool GraphicsManager::renderObjModel(const ObjModel& m,const vec3& pos,con
     
     glEnableVertexAttribArray(0); 
     glBindBuffer(GL_ARRAY_BUFFER,vbuffer);
-    glBufferData(GL_ARRAY_BUFFER,m.vertices.size() * sizeof(vec3), &m.vertices[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER,m->vertices.size() * sizeof(vec3), &m->vertices[0], GL_STATIC_DRAW);
     glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE,0,(void*)0);
 
     glEnableVertexAttribArray(1); 
     glBindBuffer(GL_ARRAY_BUFFER,uvbuffer);
-    glBufferData(GL_ARRAY_BUFFER,m.uvs.size() * sizeof(vec2), &m.uvs[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER,m->uvs.size() * sizeof(vec2), &m->uvs[0], GL_STATIC_DRAW);
     glVertexAttribPointer(1,2,GL_FLOAT,GL_FALSE,0,(void*)0);
 
-    glDrawArrays(GL_TRIANGLES,0,m.vertices.size());
+    glDrawArrays(GL_TRIANGLES,0,m->vertices.size());
 
     //glDisableVertexAttribArray(0);
     //glDisableVertexAttribArray(1);
@@ -253,6 +271,15 @@ const bool GraphicsManager::renderObjModel(const ObjModel& m,const vec3& pos,con
   }
 
   return false;
+}
+
+ObjModel* GraphicsManager::getObjModel(std::string mn)
+{
+  if(model_pointers.find(mn) == model_pointers.end())
+  {
+    return NULL;
+  }
+  return model_pointers[mn];
 }
 
 
@@ -329,7 +356,7 @@ void GraphicsManager::moveCamera(const vec3& dp)
 }
 
 
-const bool GraphicsManager::closeButtonPressed()
+bool GraphicsManager::closeButtonPressed() const
 {
   return glfwWindowShouldClose(window);
 }

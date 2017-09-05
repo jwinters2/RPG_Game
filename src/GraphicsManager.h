@@ -22,19 +22,22 @@ class GraphicsManager
     bool startFrame();
     bool endFrame();
 
-    const bool loadObjModel(const ObjModel&);
-    const bool unloadObjModel(const ObjModel&);
-    const bool renderObjModel(const ObjModel&,const vec3&,const vec3&,const vec4&);
+    bool loadObjModel(ObjModel*);
+    bool unloadObjModel(const ObjModel&);
+    bool renderObjModel(std::string,std::string,const vec3&,const vec3&,const vec4&);
 
-    const bool closeButtonPressed();
+    bool closeButtonPressed() const;
+
+    ObjModel* getObjModel(std::string);
 
     const int SCREEN_WIDTH;
     const int SCREEN_HEIGHT;
+
+    void moveCamera(const vec3&);
     
     // THIS IS ONLY PUBLIC FOR TESTING
     // NEEDS TO BE PRIVATE
     /*--*/  GLuint LoadBMP(std::string);
-    void moveCamera(const vec3&);
 
   private:
     GraphicsManager(int,int);
@@ -54,6 +57,7 @@ class GraphicsManager
     std::map<std::string,GLuint> vertex_buffers;
     std::map<std::string,GLuint> uv_buffers;
     std::map<std::string,GLuint> texture_buffers;
+    std::map<std::string,ObjModel*> model_pointers;
 
     /*--*/  static const GLfloat g_vertex_buffer_data[9];
 

@@ -9,6 +9,7 @@ ObjModel::ObjModel(std::string mn,std::string tn):
       modelName(mn),textureName(tn),vertices(),uvs(),normals(),isValid(false),
       position(0.0f),scale(1.0f),rotation(0.0f,0.0f,1.0f,0.0f)
 {
+  std::cout << "loading file \"" << mn << "\"" << std::endl;
   readFile();
 }
 
@@ -165,7 +166,7 @@ void ObjModel::readTriplet(std::string data,unsigned int& x,unsigned int& y,unsi
   //std::cout << z << std::endl;
 }
 
-const void ObjModel::print()
+void ObjModel::print() const
 {
   std::cout << "vertices: " << std::endl;
   for(int i=0; i<vertices.size(); i++)
@@ -210,14 +211,19 @@ const void ObjModel::print()
   std::cout << std::endl;
 }
 
-const bool ObjModel::getIsValid()
+bool ObjModel::getIsValid() const
 {
   return isValid;
 }
 
-const std::string ObjModel::getModelName()
+std::string ObjModel::getModelName() const
 {
   return modelName;
+}
+
+int ObjModel::getSize() const
+{
+  return vertices.size();
 }
 
 void ObjModel::setPosition(const vec3& p)

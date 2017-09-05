@@ -9,6 +9,7 @@ class EntityManager
 {
   public:
     static EntityManager* getInstance();
+
     bool setGraphicsManager(GraphicsManager*);
 
     bool LogicIterate();
