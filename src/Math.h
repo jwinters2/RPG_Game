@@ -45,20 +45,26 @@ vec2 operator+(const vec2&,const vec2&);
 vec2 operator+=(vec2&,const vec2&);
 vec2 operator*(const vec2&,float);
 vec2 operator*(float,const vec2&);
+bool operator==(const vec2&,const vec2&);
 
 vec3 operator+(const vec3&,const vec3&);
 vec3 operator+=(vec3&,const vec3&);
 vec3 operator*(const vec3&,float);
 vec3 operator*(float,const vec3&);
+bool operator==(const vec3&,const vec3&);
 
 vec4 operator+(const vec4&,const vec4&);
 vec4 operator+=(vec3&,const vec4&);
 vec4 operator*(const vec4&,float);
 vec4 operator*(float,const vec4&);
+bool operator==(const vec4&,const vec4&);
 
 vec4 axisAngleToQuat(const vec4&);
 vec4 identityQuat();
 vec4 multiplyQuat(const vec4&,const vec4&);
+
+float dot(const vec3&,const vec3&);
+vec3 cross(const vec3&,const vec3&);
 
 vec3 applyQuatToVec3(const vec4&,const vec3&);
 

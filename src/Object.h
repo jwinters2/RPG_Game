@@ -14,6 +14,7 @@ class Object : public Entity
   protected:
     vec3 position; 
     vec3 velocity; 
+    vec3 scale; 
     vec4 rotation; 
 
   public:
@@ -32,6 +33,10 @@ class Object : public Entity
     vec3 getVelocity() const;
     void setVelocity(const vec3&);
     void addVelocity(const vec3&);
+
+    vec3 getScale() const;
+    void setScale(const vec3&);
+    void addScale(const vec3&);
 
     vec4 getRotation() const;
     void setRotation(const vec4&);

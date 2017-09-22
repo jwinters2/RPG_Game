@@ -5,34 +5,13 @@
 #include "src/Entity.h"
 #include "src/Object.h"
 #include "src/Camera.h"
+#include "src/Player.h"
+#include "src/Duck.h"
 
 int main(int argc, char** argv)
 {
   GraphicsManager* gm = GraphicsManager::getInstance();   // get a reference to the singleton
-  //ObjModel person("../res/sample_person.obj","../res/sample_person_tex.bmp");
-  //ObjModel person2("../res/sample_person.obj","../res/sample_person_tex.bmp");
-  //ObjModel art("../res/art.obj","../res/art_tex.bmp");
-  //person.setPosition(vec3(2.0f,0.0f,0.0f));
-  //art.setScale(vec3(0.7f));
-  //art.setPosition(vec3(-1.0f,-3.0f,-1.0f));
 
-  //vec3 person_pos(2.0f,0.0f,0.0f);
-  //vec3 person_scale(1.0f);
-  //vec4 person_rot = identityQuat();
-
-  //vec3 person2_pos(-2.0f,0.0f,0.0f);
-  //vec3 person2_scale(0.5f);
-  //vec4 person2_rot = identityQuat();
-
-
-  //vec3 art_pos(-1.0f,-3.0f,-1.0f);
-  //vec3 art_scale(0.7f);
-  //vec4 art_rot = identityQuat();
-  //person.readFile("../res/cube.obj");
-
-
-
-  //gm->LoadBMP("../res/sample_person_tex.bmp");
   float angle=0.0f;
 
   if(gm != NULL)
@@ -45,20 +24,27 @@ int main(int argc, char** argv)
     EntityManager* em = EntityManager::getInstance();
     em->setGraphicsManager(gm);
 
-    Object::insertInstance("../res/art.obj","../res/art_tex.bmp")->setPosition(vec3( 5.0f,0.0f,0.0f));
+    for(float i=-10.0f;i<=10.0f;i+=5.0f)
+    {
+      for(float j=-10.0f;j<=10.0f;j+=5.0f)
+      {
+        Duck* temp = Duck::insertInstance();//"../res/duck.obj","../res/duck_tex.bmp");
+        temp->setPosition(vec3(i,-1.0f,j));
+        temp->setScale(vec3(0.4f));
+        temp->setCyclePos((int)(10 * (i+j)));
+      }
+    }
+
     Object* o = Object::insertInstance("../res/art.obj","../res/art_tex.bmp");
 
-    o->setPosition(vec3(-5.0f,0.0f,0.0f));
+    o->setPosition(vec3(-40.0f,40.0f,0.0f));
+    o->setScale(vec3(5.0f));
 
     o->setRotation(axisAngleToQuat(vec4(0.0f,0.0f,1.0f,45.0f)));
 
-    Camera* c = Camera::insertInstance();
-    c->setPosition(vec3(0.0f,0.0f,15.0f));
-    gm->setCamera(c);
-    //gm->loadObjModel(person);
-    //gm->loadObjModel(person2);
-    //gm->loadObjModel(art);
+    Player* p = Player::insertInstance();
    
+    //int frame = 0;
     while(!gm->closeButtonPressed())
     {
       em->LogicIterate();
@@ -79,6 +65,8 @@ int main(int argc, char** argv)
       }
 
       o->addRotation(axisAngleToQuat(vec4(0.0f,1.0f,0.0f,1.0f)));
+
+      //std::cout << "frame " << frame++ << std::endl;
     }
     
     gm->deinit();     // undo gm->init()

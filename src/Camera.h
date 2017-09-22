@@ -11,7 +11,13 @@ class Camera: public Object
 
     static Camera* insertInstance();
 
+    void lookX(float);
+    void lookY(float);
+
   private:
     Camera();
     ~Camera();
+
+    float xangle;
+    float yangle;
 };
