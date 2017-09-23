@@ -26,7 +26,10 @@ class GJK
 
     static vec3 EPAAlgorithm(const std::vector<vec3>&,const std::vector<vec3>&,const std::vector<vec3>&);
 
+    static vec3 Displacement(const std::vector<vec3>&,const std::vector<vec3>&);
+
     static bool edgeListContainsEdge(std::vector<std::vector<vec3>>&,std::vector<vec3>);
+    static vec3 closestToOrigin(const std::vector<vec3>&);
   public:
     static bool GJKAlgorithm(const std::vector<vec3>&,const std::vector<vec3>&);
     static bool GJKAlgorithm(const std::vector<vec3>&,const std::vector<vec3>&,vec3&);

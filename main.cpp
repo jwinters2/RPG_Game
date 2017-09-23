@@ -28,10 +28,10 @@ int main(int argc, char** argv)
     {
       for(float j=-10.0f;j<=10.0f;j+=5.0f)
       {
-        Duck* temp = Duck::insertInstance();//"../res/duck.obj","../res/duck_tex.bmp");
-        temp->setPosition(vec3(i,-1.0f,j));
+        //Duck* temp = Duck::insertInstance();//"../res/duck.obj","../res/duck_tex.bmp");
+        //temp->setPosition(vec3(i,-1.0f,j));
         temp->setScale(vec3(0.4f));
-        temp->setCyclePos((int)(10 * (i+j)));
+        //temp->setCyclePos((int)(10 * (i+j)));
       }
     }
 
